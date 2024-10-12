@@ -1,6 +1,6 @@
 package com.hstn.crud_rest.rest;
 
-import com.hstn.crud_rest.dao.EmployeeDAO;
+//import com.hstn.crud_rest.dao.EmployeeDAO;
 import com.hstn.crud_rest.entity.Employee;
 import com.hstn.crud_rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class EmployeeRestController {
 	@GetMapping("/emps/{employeeId}")
 	public Employee getEmployeeById(@PathVariable int employeeId) {
 
-		Employee employee = employeeService.findEmployeeById(employeeId);
+		Employee employee = employeeService.findById(employeeId);
 		if (employee == null) {
 			throw new RuntimeException("Employee ID " + employeeId + " not found");
 		} else {
@@ -58,7 +58,7 @@ public class EmployeeRestController {
 
 	@DeleteMapping("/emps/{employeeId}")
 	public String deleteEmployee(@PathVariable int employeeId) {
-		Employee employee = employeeService.findEmployeeById(employeeId);
+		Employee employee = employeeService.findById(employeeId);
 		if (employee == null) {
 			throw new RuntimeException("Employee ID " + employeeId + " not found");
 		} else {

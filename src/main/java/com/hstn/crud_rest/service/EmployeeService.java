@@ -8,7 +8,7 @@ public interface EmployeeService {
 
 	List<Employee> findAll();
 
-	Employee findEmployeeById(int id);
+	Employee findById(int id);
 
 	Employee save(Employee employees);
 
