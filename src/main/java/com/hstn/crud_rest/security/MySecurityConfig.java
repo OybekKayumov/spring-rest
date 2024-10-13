@@ -8,35 +8,47 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class MySecurityConfig {
 
-	//todo_ crete users, test:test from app.props won't work
+	//todo_ get users from db
 	@Bean
-	public InMemoryUserDetailsManager userDetailsManager() {
+	public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
-		UserDetails user1 = User.builder()
-						.username("john")
-						.password("{noop}test")
-						.roles("EMPLOYEE")
-						.build();
+		return new JdbcUserDetailsManager(dataSource);
 
-		UserDetails user2 = User.builder()
-						.username("jane")
-						.password("{noop}test")
-						.roles("EMPLOYEE", "MANAGER")
-						.build();
-
-		UserDetails user3 = User.builder()
-						.username("anna")
-						.password("{noop}test")
-						.roles("EMPLOYEE", "MANAGER", "ADMIN")
-						.build();
-
-		return new InMemoryUserDetailsManager(user1, user2, user3);
 	}
+
+	//todo_ crete users, test:test from app.props won't work
+//	@Bean
+//	public InMemoryUserDetailsManager userDetailsManager() {
+//
+//		UserDetails user1 = User.builder()
+//						.username("john")
+//						.password("{noop}test")
+//						.roles("EMPLOYEE")
+//						.build();
+//
+//		UserDetails user2 = User.builder()
+//						.username("jane")
+//						.password("{noop}test")
+//						.roles("EMPLOYEE", "MANAGER")
+//						.build();
+//
+//		UserDetails user3 = User.builder()
+//						.username("anna")
+//						.password("{noop}test")
+//						.roles("EMPLOYEE", "MANAGER", "ADMIN")
+//						.build();
+//
+//		return new InMemoryUserDetailsManager(user1, user2, user3);
+//	}
 
 	//todo_ user roles
 	@Bean
