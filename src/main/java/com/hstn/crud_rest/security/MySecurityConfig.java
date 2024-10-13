@@ -22,7 +22,6 @@ public class MySecurityConfig {
 	public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
 		return new JdbcUserDetailsManager(dataSource);
-
 	}
 
 	//todo_ crete users, test:test from app.props won't work
