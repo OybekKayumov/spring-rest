@@ -20,6 +20,7 @@
           <th>Employee Last Name</th>
           <th>Employee First Name</th>
           <th>Employee Email</th>
+          <th>Update Employee</th>
         </tr>
       </thead>
 
@@ -29,6 +30,12 @@
           <td th:text="${oneEmployee.lastName}"></td>
           <td th:text="${oneEmployee.firstName}"></td>
           <td th:text="${oneEmployee.email}"></td>
+          <td>
+            <a th:href="@{/employees/updateEmloyee(employeeId=${oneEmployee.id})}"
+            class="btn btn-primary">
+              Update
+            </a>
+          </td>
         </tr>
 
       </tbody>
