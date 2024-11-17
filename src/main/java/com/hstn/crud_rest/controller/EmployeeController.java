@@ -35,16 +35,24 @@ public class EmployeeController {
 
 	@PostMapping("/save")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-		employeeService.save(employee);
 
+		employeeService.save(employee);
 		return "redirect:/employees/list";
 	}
 
 	@GetMapping("updateEmloyee")
 	public String formForUpdate(@RequestParam("employeeId") int employeeId, Model model) {
+
 		Employee employee = employeeService.findById(employeeId);
 		model.addAttribute("employee", employee);
 
 		return "new-employee-form";
+	}
+
+	@GetMapping("delete")
+	public String deleteEmployee(@RequestParam("employeeId") int employeeId) {
+
+		employeeService.deleteEmployeeById(employeeId);
+		return "redirect:/employees/list";
 	}
 }
