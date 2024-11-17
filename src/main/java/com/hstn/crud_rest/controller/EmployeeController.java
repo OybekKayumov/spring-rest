@@ -4,10 +4,7 @@ import com.hstn.crud_rest.entity.Employee;
 import com.hstn.crud_rest.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,13 @@ public class EmployeeController {
 		employeeService.save(employee);
 
 		return "redirect:/employees/list";
+	}
+
+	@GetMapping("updateEmloyee")
+	public String formForUpdate(@RequestParam("employeeId") int employeeId, Model model) {
+		Employee employee = employeeService.findById(employeeId);
+		model.addAttribute("employee", employee);
+
+		return "new-employee-form";
 	}
 }

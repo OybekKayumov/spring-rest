@@ -22,8 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> findAll() {
-		//return employeeRepo.findAll();
-		return employeeRepo.findAllByOrderByLastNameAsc();
+		return employeeRepo.findAll();
+		//return employeeRepo.findAllByOrderByLastNameAsc();
 	}
 
 	@Override
@@ -50,4 +50,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void deleteEmployeeById(int id) {
 		employeeRepo.deleteById(id);
 	}
+
+	//107
 }
